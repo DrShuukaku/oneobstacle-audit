@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>One Obstacle L.L.C. | 15-Minute Operational Systems Audit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <style>
+    :root {
+      --bg: #090c15;
+      --card-bg: rgba(18, 23, 38, 0.88);
+      --card-border: rgba(255, 40, 0, 0.22);
+      --red: #FF2800;
+      --red-glow: rgba(255, 40, 0, 0.4);
+      --midnight: #191970;
+      --charcoal: #1c202a;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(25, 25, 112, 0.35) 0%, transparent 45%),
+        radial-gradient(circle at 85% 75%, rgba(255, 40, 0, 0.12) 0%, transparent 40%),
+        linear-gradient(180deg, #090c15 0%, #0d1220 100%);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 48px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 40, 0, 0.1);
+      border: 1px solid rgba(255, 40, 0, 0.3);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-family: var(--font-display);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #ff6b52;
+      margin-bottom: 14px;
+    }
+
+    .brand-badge .dot {
+      width: 7px;
+      height: 7px;
+      background: var(--red);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--red);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      line-height: 1.15;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    h1 span {
+      background: linear-gradient(135deg, #ffffff 40%, var(--red) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      max-width: 520px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 28px 24px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+      margin-bottom: 24px;
+    }
+
+    .qr-preview-box {
+      text-align: center;
+      padding: 24px;
+      background: rgba(13, 18, 32, 0.9);
+      border: 1px dashed rgba(255, 40, 0, 0.35);
+      border-radius: 14px;
+      margin-bottom: 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .qr-frame {
+      padding: 12px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 0 3px var(--red);
+      display: inline-block;
+      line-height: 0;
+    }
+
+    .qr-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .qr-url {
+      font-family: var(--font-display);
+      color: #ff7860;
+      font-size: 0.88rem;
+      word-break: break-all;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    label .req {
+      color: var(--red);
+    }
+
+    input, select, textarea {
+      width: 100%;
+      background: rgba(9, 12, 21, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      padding: 12px 14px;
+      color: #ffffff;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(255, 40, 0, 0.2);
+      background: rgba(14, 18, 30, 0.9);
+    }
+
+    select option {
+      background: #121726;
+      color: #ffffff;
+    }
+
+    .radio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+    }
+
+    .radio-label {
+      cursor: pointer;
+      margin-bottom: 0;
+    }
+
+    .radio-label input {
+      display: none;
+    }
+
+    .radio-pill {
+      display: block;
+      padding: 10px 12px;
+      background: rgba(9, 12, 21, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+    }
+
+    .radio-label input:checked + .radio-pill {
+      background: rgba(255, 40, 0, 0.15);
+      border-color: var(--red);
+      color: #ffffff;
+      font-weight: 600;
+      box-shadow: 0 0 10px rgba(255, 40, 0, 0.25);
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--red) 0%, #b81d00 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      padding: 16px;
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      box-shadow: 0 6px 20px var(--red-glow);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255, 40, 0, 0.55);
+    }
+
+    .btn-submit:active {
+      transform: translateY(0);
+    }
+
+    .trust-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      gap: 16px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 22px;
+      flex-wrap: wrap;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .trust-icon {
+      color: var(--red);
+      font-weight: bold;
+    }
+
+    .success-panel {
+      display: none;
+      text-align: center;
+      padding: 32px 16px;
+    }
+
+    .success-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(255, 40, 0, 0.15);
+      border: 2px solid var(--red);
+      border-radius: 50%;
+      color: var(--red);
+      font-size: 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    .success-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .success-text {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand-badge">
+        <span class="dot"></span>
+        One Obstacle L.L.C.
+      </div>
+      <h1>Where Is Your Business <span>Leaking Time?</span></h1>
+      <p class="subtitle">Complete this diagnostic audit in 2 minutes. We pinpoint your core operational constraint before our 15-minute diagnostic call.</p>
+    </header>
+
+    <!-- LIVE QR CODE DEMO / SCAN TARGET -->
+    <div class="qr-preview-box">
+      <div class="qr-frame" id="qrcode"></div>
+      <div class="qr-label">
+        <span><strong>Live Generated QR Code</strong> (Ready to test right now)</span>
+        <span class="qr-url">https://oneobstacle.com/audit</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <form id="auditForm">
+        <div class="form-group">
+          <label for="fullName">Your Name & Title <span class="req">*</span></label>
+          <input type="text" id="fullName" placeholder="e.g. Omar — Founder" required />
+        </div>
+
+        <div class="form-group">
+          <label for="companyName">Business Name & Website / Social <span class="req">*</span></label>
+          <input type="text" id="companyName" placeholder="e.g. Acme Studio / @acmestudio" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Direct Work Email <span class="req">*</span></label>
+          <input type="email" id="email" placeholder="contact@company.com" required />
+        </div>
+
+        <div class="form-group">
+          <label>What is your primary growth bottleneck right now? <span class="req">*</span></label>
+          <div class="radio-grid">
+            <label class="radio-label">
+              <input type="radio" name="bottleneck" value="operations" checked />
+              <span class="radio-pill">Repetitive Tasks / Admin</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="bottleneck" value="leads" />
+              <span class="radio-pill">Customer Acquisition</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="bottleneck" value="systems" />
+              <span class="radio-pill">Founder Burnout</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="hoursLost">Estimated weekly hours lost to manual work & firefighting:</label>
+          <select id="hoursLost">
+            <option value="5-10">5 – 10 hours / week</option>
+            <option value="10-20">10 – 20 hours / week (Severe)</option>
+            <option value="20+">20+ hours / week (Critical Bottleneck)</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-submit">
+          Lock In Free 15-Minute Audit →
+        </button>
+
+        <div class="trust-footer">
+          <div class="trust-item"><span class="trust-icon">✓</span> Zero Pitch Guarantee</div>
+          <div class="trust-item"><span class="trust-icon">✓</span> 15-Minute Strict Cap</div>
+          <div class="trust-item"><span class="trust-icon">✓</span> Actionable Roadmap</div>
+        </div>
+      </form>
+
+      <div class="success-panel" id="successPanel">
+        <div class="success-icon">✓</div>
+        <div class="success-title">Audit Submitted</div>
+        <p class="success-text">Your diagnostic report has been queued. We review your bottleneck within 24 hours and send your calendar link directly to your inbox.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Generate QR Code dynamically
+    const qrTargetUrl = "https://oneobstacle.com/audit";
+    new QRCode(document.getElementById("qrcode"), {
+      text: qrTargetUrl,
+      width: 130,
+      height: 130,
+      colorDark: "#121726",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+
+    // Handle Form Action
+    document.getElementById("auditForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      document.getElementById("auditForm").style.display = "none";
+      document.getElementById("successPanel").style.display = "block";
+    });
+  </script>
+</body>
+</html>
