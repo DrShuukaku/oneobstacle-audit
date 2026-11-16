@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --color-accent: #2b4a7c;
+  --color-accent-dark: #213a63;
+  --color-accent-soft: #e8eef7;
+}
+
+body {
+  background: #f6f5f2;
+  color: #1c1917;
+}
+
+/* 16px inputs stop phones from zooming in when a field is tapped. */
+input,
+select,
+textarea {
+  font-size: 16px;
+}
